@@ -45,7 +45,15 @@ export default {
 		draft: {
 			title: '<> Movie Draft',
 			movies: [],
-			teams: {}
+			teams: {},
+			status: {
+				lastUpdate: new Date(1900, 0, 1, 0, 0, 0),
+				seasonEnd: new Date(1900, 0, 1, 0, 0, 0),
+				twitter: '',
+				lastManualUpdate: new Date(1900, 0, 1, 0, 0, 0),
+				manualUpdateMessage: '',
+				chatrealmForm: null
+			}
 		}
 	}),
 	computed: {

@@ -27,7 +27,8 @@
 
 				<div class="navbar-end">
 					<a
-						href="https://draft.diamondclub.tv/form/"
+						v-if="draft.status.chatrealmForm"
+						:href="draft.status.chatrealmForm"
 						target="_blank"
 						rel="noopener noreferrer"
 						class="navbar-item"
@@ -48,6 +49,11 @@
 		<router-view
 			:draft="draft"
 		/>
+		<footer class="footer">
+			<div class="content has-text-centered">
+				<p>Data fetched from <span title="Obviously not related">Google Sheets</span> – Updated every 5 minutes</p>
+			</div>
+		</footer>
 	</div>
 </template>
 
