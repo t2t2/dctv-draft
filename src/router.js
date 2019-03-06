@@ -5,6 +5,7 @@ import MoviesTable from './views/movies/movies-table.vue'
 Vue.use(Router)
 
 export default new Router({
+	mode: 'hash',
 	linkActiveClass: 'is-active',
 	routes: [
 		{

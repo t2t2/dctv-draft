@@ -6,8 +6,6 @@ const TITLE_PREFIX = 'Movie Draft - ';
  */
 export default function (doc) {
 	const sheets = mapSheets(doc)
-	const movies = getMovies(sheets.get('Movies'))
-	const status = getStatus(sheets.get('Status'))
 
 	let title = doc.getElementById('doc-title').innerText
 	if (title.startsWith(TITLE_PREFIX)) {
@@ -16,9 +14,9 @@ export default function (doc) {
 
 	return {
 		title,
-		movies,
-		teams: [],
-		status
+		movies: getMovies(sheets.get('Movies')),
+		teams: getTeams(sheets.get('Teams')),
+		status: getStatus(sheets.get('Status'))
 	}
 }
 
@@ -73,6 +71,9 @@ function getCellValue(rowEl, index) {
  * @returns {Date}
  */
 function formatDate(value) {
+	if (value.length === 0) {
+		return Object.freeze(new Date(1970, 0, 1, 0, 0, 0))
+	}
 	return Object.freeze(new Date(value))
 }
 
@@ -135,19 +136,10 @@ function getMovies(el) {
 }
 
 /**
- * Get formatted movies
+ * Get formatted status
  * @param {HTMLElement} el
  */
 function getStatus(el) {
-	const status = {
-		lastUpdate: new Date(1900, 0, 1, 0, 0, 0),
-		seasonEnd: new Date(1900, 0, 1, 0, 0, 0),
-		twitter: '',
-		lastManualUpdate: new Date(1900, 0, 1, 0, 0, 0),
-		manualUpdateMessage: '',
-		chatrealmForm: null
-	}
-
 	const rows = el.querySelectorAll('table tbody tr')
 	const headings = getHeadings(rows[0]) // heading -> col index
 
@@ -161,4 +153,30 @@ function getStatus(el) {
 		manualUpdateMessage: getCellValue(row, headings.get('Manual Update Message')),
 		chatrealmForm: formatNullable(getCellValue(row, headings.get('Chatrealm Form')))
 	}
+}
+
+/**
+ * Get formatted teams
+ * @param {HTMLElement} el
+ */
+function getTeams(el) {
+	const teams = {}
+
+	const rows = el.querySelectorAll('table tbody tr')
+	const headings = getHeadings(rows[0]) // heading -> col index
+
+	Array.from(rows).slice(1).forEach(rowEl => {
+		if (rowEl.children[0].classList.contains('freezebar-cell')) {
+			return
+		}
+
+		const name = getCellValue(rowEl, headings.get('Teams'))
+		teams[name] = {
+			name,
+			moneySpent: getCellValue(rowEl, headings.get('Money Spent')),
+			earnings: formatDate(getCellValue(rowEl, headings.get('Earnings')))
+		}
+	})
+
+	return teams
 }
