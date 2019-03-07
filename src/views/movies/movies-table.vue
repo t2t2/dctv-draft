@@ -13,7 +13,7 @@
 								<option :value="undefined">All</option>
 								<option :value="''">Unowned</option>
 								<option
-									v-for="team in draft.teams"
+									v-for="team in teams"
 									:key="team.name"
 									:value="team.name"
 								>{{ team.name }}</option>
@@ -67,21 +67,19 @@
 </template>
 
 <script>
+import {state} from '@/store'
 import MovieRow from './movie-row'
 
 export default {
 	components: {
 		MovieRow
 	},
-	props: {
-		draft: {
-			type: Object,
-			required: true
-		}
-	},
 	computed: {
+		teams() {
+			return state.draft.teams
+		},
 		orderedMovies() {
-			const {movies} = this.draft
+			const {movies} = state.draft
 			return Object.keys(movies)
 				.map(key => movies[key])
 				.filter(movie => {

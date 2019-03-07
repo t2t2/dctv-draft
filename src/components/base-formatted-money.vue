@@ -5,10 +5,14 @@ export default {
 		value: {
 			type: Number,
 			required: true
+		},
+		tag: {
+			type: String,
+			default: 'span'
 		}
 	},
 	render(h, ctx) {
-		return <span>₪ {ctx.props.value}</span>
+		return h(ctx.props.tag, ctx.data, [`₪ ${ctx.props.value}`])
 	}
 }
 </script>

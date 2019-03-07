@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="wrapper">
 		<nav class="navbar" role="navigation" aria-label="main navigation">
 			<div class="navbar-brand">
 				<span class="navbar-item" href="https://bulma.io">
@@ -22,6 +22,13 @@
 						class="navbar-item"
 					>
 						Movies
+					</router-link>
+					<router-link
+						:to="{name: 'chatrealm'}"
+						class="navbar-item"
+						active-class="is-active"
+					>
+						Chatrealm League
 					</router-link>
 				</div>
 
@@ -46,9 +53,9 @@
 				</div>
 			</div>
 		</nav>
-		<router-view
-			:draft="draft"
-		/>
+		<div class="content-wrapper">
+			<router-view />
+		</div>
 		<footer class="footer">
 			<div class="content has-text-centered">
 				<p>Data fetched from <span title="Obviously not related">Google Sheets</span> – Updated every 5 minutes</p>
@@ -58,17 +65,30 @@
 </template>
 
 <script>
+import {state} from '@/store'
+
 export default {
 	props: {
-		draft: {
-			type: Object,
-			required: true
-		},
 		spreadsheetUrl: {
 			type: String,
 			required: true
+		}
+	},
+	computed: {
+		draft() {
+			return state.draft
 		}
 	}
 }
 </script>
 
+<style>
+	.wrapper {
+		display: flex;
+		min-height: 100vh;
+		flex-direction: column;
+	}
+	.content-wrapper {
+		flex-grow: 1;
+	}
+</style>

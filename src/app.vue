@@ -1,31 +1,28 @@
 <template>
 	<div id="app">
 		<TheLoading
-			v-if="loading"
+			v-if="state.loading"
 			:step="2"
 		/>
 		<TheError
-			v-else-if="error"
-			:error="error"
+			v-else-if="state.error"
+			:error="state.error"
 			:spreadsheet-url="spreadsheetUrl"
 		/>
 
 		<TheLayout
 			v-else
-			:draft="draft"
 			:spreadsheet-url="spreadsheetUrl"
 		/>
 	</div>
 </template>
 
 <script>
-import axios from 'axios'
-
 import TheError from '@/components/the-error'
 import TheLayout from '@/components/the-layout'
 import TheLoading from '@/components/the-loading'
 
-import dataTransformer from './data-transform'
+import {state, fetchData} from '@/store'
 
 export default {
 	components: {
@@ -40,38 +37,15 @@ export default {
 		}
 	},
 	data: () => ({
-		loading: true,
-		error: null,
-		draft: {
-			title: '<> Movie Draft',
-			movies: [],
-			teams: {},
-			status: {
-				lastUpdate: new Date(1900, 0, 1, 0, 0, 0),
-				seasonEnd: new Date(1900, 0, 1, 0, 0, 0),
-				twitter: '',
-				lastManualUpdate: new Date(1900, 0, 1, 0, 0, 0),
-				manualUpdateMessage: '',
-				chatrealmForm: null
-			}
-		}
+		state
 	}),
 	computed: {
 		spreadsheetUrl() {
 			return `https://docs.google.com/spreadsheets/d/e/${this.spreadsheet}/pubhtml`
 		}
 	},
-	async mounted() {
-		try {
-			const {data} = await axios.get(this.spreadsheetUrl, {
-					responseType: 'document'
-			})
-
-			this.draft = dataTransformer(data)
-		} catch (err) {
-			this.error = err
-		}
-		this.loading = false
+	mounted() {
+		fetchData(this.spreadsheetUrl)
 	},
 	watch: {
 		'draft.title': {

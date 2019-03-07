@@ -16,7 +16,12 @@ export default function (doc) {
 		title,
 		movies: getMovies(sheets.get('Movies')),
 		teams: getTeams(sheets.get('Teams')),
-		status: getStatus(sheets.get('Status'))
+		status: getStatus(sheets.get('Status')),
+		chatrealm: {
+			league: getChatrealmLeague(sheets.get('Full Chatrealm List')),
+			reverse: getChatrealmLeague(sheets.get('Chatrealm Last with 100 League'), true),
+			alternative: getChatrealmLeague(sheets.get('Chatrealm Alternative Picks'))
+		}
 	}
 }
 
@@ -179,4 +184,42 @@ function getTeams(el) {
 	})
 
 	return teams
+}
+
+/**
+ * Get formatted teams
+ * @param {HTMLElement} el
+ * @param {boolean} lastWithHundred
+ */
+function getChatrealmLeague(el, lastWithHundred) {
+	const rows = el.querySelectorAll('table tbody tr')
+	const headings = getHeadings(rows[0]) // heading -> col index
+
+	return Array.from(rows)
+		.slice(1)
+		.map(rowEl => {
+			if (
+				rowEl.children[0].classList.contains('freezebar-cell')
+			) {
+				return
+			}
+
+			const name = getCellValue(rowEl, headings.get('Name'))
+			if (!name) {
+				return
+			}
+
+			return {
+				name,
+				movies: getCellValue(rowEl, headings.get('Movie IDs')).split(','),
+				earnings: formatDollars(getCellValue(rowEl, headings.get('Total Gross'))),
+				rank: parseFloat(getCellValue(rowEl, headings.get('Rank'))),
+				spent: formatMoney(getCellValue(rowEl, headings.get('Spent'))),
+				...(lastWithHundred ? {
+					penalty: formatDollars(getCellValue(rowEl, headings.get('Unspent Penalty')))
+				} : {})
+			}
+		})
+		.filter(a => a)
+		.sort((a, b) => (a.rank === b.rank) ? ((a.name.toUpperCase() > b.name.toUpperCase()) ? 1 : -1) : (a.rank - b.rank))
 }
