@@ -8,13 +8,17 @@ export default {
 		value: {
 			type: Date,
 			required: true
+		},
+		month: {
+			type: String,
+			default: 'short'
 		}
 	},
 	computed: {
 		textualValue() {
 			return this.value.toLocaleString(undefined, {
 				timeZone: 'UTC',
-				month: 'short',
+				month: this.month,
 				day: '2-digit',
 				year: 'numeric'
 			})

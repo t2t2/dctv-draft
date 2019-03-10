@@ -166,6 +166,7 @@ function getStatus(el) {
  */
 function getTeams(el) {
 	const teams = {}
+	const allEarnings = []
 
 	const rows = el.querySelectorAll('table tbody tr')
 	const headings = getHeadings(rows[0]) // heading -> col index
@@ -176,11 +177,21 @@ function getTeams(el) {
 		}
 
 		const name = getCellValue(rowEl, headings.get('Teams'))
+		const earnings = formatDollars(getCellValue(rowEl, headings.get('Earnings')))
+
 		teams[name] = {
 			name,
 			moneySpent: getCellValue(rowEl, headings.get('Money Spent')),
-			earnings: formatDate(getCellValue(rowEl, headings.get('Earnings')))
+			earnings
 		}
+		allEarnings.push(earnings)
+	})
+
+	// Add places
+	allEarnings.sort((a, b) => b - a)
+	Object.keys(teams).forEach(team => {
+		const teamObj = teams[team]
+		teamObj.place = allEarnings.indexOf(teamObj.earnings) + 1
 	})
 
 	return teams
@@ -195,7 +206,7 @@ function getChatrealmLeague(el, lastWithHundred) {
 	const rows = el.querySelectorAll('table tbody tr')
 	const headings = getHeadings(rows[0]) // heading -> col index
 
-	return Array.from(rows)
+	const players = Array.from(rows)
 		.slice(1)
 		.map(rowEl => {
 			if (
@@ -222,4 +233,33 @@ function getChatrealmLeague(el, lastWithHundred) {
 		})
 		.filter(a => a)
 		.sort((a, b) => (a.rank === b.rank) ? ((a.name.toUpperCase() > b.name.toUpperCase()) ? 1 : -1) : (a.rank - b.rank))
+
+	return {
+		players,
+		places: groupByPlace(players)
+	}
+}
+
+/**
+ * Groups players into groups by place
+ * @param {Object[]} players
+ */
+function groupByPlace(players) {
+	const groups = new Map()
+	players.forEach(player => {
+		const rank = player.rank
+		if (!groups.has(rank)) {
+			groups.set(rank, [])
+		}
+		groups.get(rank).push(player)
+	})
+
+	return Array.from(groups.keys())
+		.sort((a, b) => a - b)
+		.map(rank => ({
+			rank: parseFloat(rank),
+			people: groups.get(rank).length,
+			earnings: groups.get(rank)[0].earnings,
+			players: groups.get(rank)
+		}))
 }

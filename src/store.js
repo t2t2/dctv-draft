@@ -6,30 +6,33 @@ import dataTransformer from './data-transform'
 const client = axios.create()
 delete client.defaults.headers.common['Accept'] // For preload accuracy
 
-export const state = Vue.observable({
-	loading: true,
-	error: null,
-	draft: {
-		title: '<> Movie Draft',
-		chatrealm: {
-			league: {},
-			reverse: {},
-			alternative: {}
-		},
-		movies: [],
-		teams: {},
-		status: {
-			lastUpdate: new Date(1900, 0, 1, 0, 0, 0),
-			seasonEnd: new Date(1900, 0, 1, 0, 0, 0),
-			twitter: '',
-			lastManualUpdate: new Date(1900, 0, 1, 0, 0, 0),
-			manualUpdateMessage: '',
-			chatrealmForm: null
+export const state = new Vue({
+	data: () => ({
+		loading: true,
+		error: null,
+		draft: {
+			title: '<> Movie Draft',
+			chatrealm: {
+				league: {},
+				reverse: {},
+				alternative: {}
+			},
+			movies: [],
+			teams: {},
+			status: {
+				lastUpdate: new Date(1900, 0, 1, 0, 0, 0),
+				seasonEnd: new Date(1900, 0, 1, 0, 0, 0),
+				twitter: '',
+				lastManualUpdate: new Date(1900, 0, 1, 0, 0, 0),
+				manualUpdateMessage: '',
+				chatrealmForm: null
+			}
 		}
-	}
+	})
 })
 
 export async function fetchData(spreadsheetUrl) {
+	state.loading = true
 	try {
 		const {data} = await fetchWithCORSRetry(spreadsheetUrl)
 

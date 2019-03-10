@@ -32,23 +32,7 @@ export default {
 	},
 	computed: {
 		groupedByPlace() {
-			const players = state.draft.chatrealm[this.type]
-			const groups = new Map()
-			players.forEach(player => {
-				const rank = player.rank
-				if (!groups.has(rank)) {
-					groups.set(rank, [])
-				}
-				groups.get(rank).push(player)
-			})
-
-			return Array.from(groups.keys())
-				.sort((a, b) => a - b)
-				.map(rank => ({
-					rank: parseFloat(rank),
-					earnings: groups.get(rank)[0].earnings,
-					players: groups.get(rank)
-				}))
+			return state.draft.chatrealm[this.type].places
 		},
 		leagueDescription({type}) {
 			switch(type) {

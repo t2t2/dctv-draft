@@ -2,9 +2,13 @@
 	<div class="wrapper">
 		<nav class="navbar" role="navigation" aria-label="main navigation">
 			<div class="navbar-brand">
-				<span class="navbar-item" href="https://bulma.io">
+				<router-link
+					:to="{name: 'overview'}"
+					class="navbar-item"
+					exact-active-class=""
+				>
 					{{ draft.title }} Movie Draft
-				</span>
+				</router-link>
 
 				<!--
 				<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -17,6 +21,12 @@
 
 			<div class="navbar-menu is-active">
 				<div class="navbar-start">
+					<router-link
+						:to="{name: 'overview'}"
+						class="navbar-item"
+					>
+						Overview
+					</router-link>
 					<router-link
 						:to="{name: 'movies'}"
 						class="navbar-item"
@@ -50,6 +60,15 @@
 					>
 						View Old Spreadsheet Experience
 					</a>
+					<a
+						class="navbar-item"
+						@click="refresh"
+					>
+						<span class="is-hidden-desktop">Refresh </span>
+						<span class="icon is-small">
+							<BaseIcon name="refresh" />
+						</span>
+					</a>
 				</div>
 			</div>
 		</nav>
@@ -65,9 +84,14 @@
 </template>
 
 <script>
-import {state} from '@/store'
+import {state, fetchData} from '@/store'
+
+import BaseIcon from '@/components/base-icon'
 
 export default {
+	components: {
+		BaseIcon
+	},
 	props: {
 		spreadsheetUrl: {
 			type: String,
@@ -77,6 +101,11 @@ export default {
 	computed: {
 		draft() {
 			return state.draft
+		}
+	},
+	methods: {
+		refresh() {
+			fetchData(this.spreadsheetUrl)
 		}
 	}
 }

@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import ChatrealmHome from './views/chatrealm/chatrealm-home.vue'
 import ChatrealmLeague from './views/chatrealm/chatrealm-league.vue'
 import ChatrealmWrapper from './views/chatrealm/chatrealm-wrapper.vue'
 import MoviesTable from './views/movies/movies-table.vue'
+import Overview from './views/overview/home.vue'
 
 Vue.use(Router)
 
@@ -13,6 +15,11 @@ export default new Router({
 	routes: [
 		{
 			path: '/',
+			name: 'overview',
+			component: Overview
+		},
+		{
+			path: '/movies',
 			name: 'movies',
 			component: MoviesTable
 		},
@@ -29,12 +36,7 @@ export default new Router({
 				{
 					path: '',
 					name: 'chatrealm',
-					redirect: {
-						name: 'chatrealm.league',
-						params: {
-							type: 'league'
-						}
-					}
+					component: ChatrealmHome
 				}
 			]
 		}

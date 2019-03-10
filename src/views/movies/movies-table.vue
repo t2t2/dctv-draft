@@ -26,12 +26,13 @@
 			<div class="table-container">
 				<table class="table is-fullwidth">
 					<colgroup>
-						<col style="width: 35%">
+						<col style="width: 30%">
 						<col style="width: 15%">
 						<col style="width: 10%">
 						<col style="width: 10%">
 						<col style="width: 10%">
-						<col style="width: 20%">
+						<col style="width: 15%">
+						<col style="width: 15%">
 					</colgroup>
 					<thead>
 						<tr>
@@ -39,8 +40,9 @@
 							<th>Release Date</th>
 							<th>Box Office Mojo</th>
 							<th>Owner</th>
-							<th class="has-text-right">Price Paid</th>
+							<th class="has-text-right">Purchase Price</th>
 							<th class="has-text-right">Gross</th>
+							<th class="has-text-right">Gross Per Price</th>
 						</tr>
 					</thead>
 					<tbody v-if="orderedMovies.length > 0">
@@ -81,7 +83,13 @@ export default {
 		orderedMovies() {
 			const {movies} = state.draft
 			return Object.keys(movies)
-				.map(key => movies[key])
+				.map(key => {
+					const movie = movies[key]
+					return {
+						...movie,
+						grossPerPrice: movie.gross / Math.max(movie.price, 1)
+					}
+				})
 				.filter(movie => {
 					if (this.ownerFilter === undefined) {
 						return true

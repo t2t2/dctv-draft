@@ -37,7 +37,7 @@ export default {
 		}
 	},
 	data: () => ({
-		state
+		state: state.$data
 	}),
 	computed: {
 		spreadsheetUrl() {
@@ -48,7 +48,7 @@ export default {
 		fetchData(this.spreadsheetUrl)
 	},
 	watch: {
-		'draft.title': {
+		'state.draft.title': {
 			handler(value) {
 				document.title = `${value} | <>.tv Movie Draft`
 			}

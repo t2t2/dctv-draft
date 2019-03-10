@@ -26,6 +26,11 @@
 		<td class="has-text-right">
 			<BaseFormattedDollars :value="movie.gross" />
 		</td>
+		<td class="has-text-right">
+			<BaseFormattedDollars
+				:value="movie.grossPerPrice"
+			/>
+		</td>
 	</tr>
 </template>
 
