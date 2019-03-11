@@ -59,7 +59,7 @@
 								Last Manual Update:
 							</div>
 							<div class="control">
-								<BaseFormattedDate :value="status.lastUpdate" month="long" />
+								<BaseFormattedDate :value="status.lastManualUpdate" month="long" />
 								<p>{{ status.manualUpdateMessage }}</p>
 							</div>
 						</div>
