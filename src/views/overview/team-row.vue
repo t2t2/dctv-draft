@@ -14,7 +14,7 @@
 				<div class="column has-text-left has-text-right-tablet">
 					<BaseFormattedDollars
 						:value="team.earnings"
-						class="is-size-4"
+						class="is-size-4 is-size-3-tablet"
 					/>
 				</div>
 			</div>
@@ -39,6 +39,7 @@
 
 <script>
 import {state} from '@/store'
+import {movieIsReleased} from '@/utils'
 
 import BaseFormattedDate from '@/components/base-formatted-date'
 import BaseFormattedDollars from '@/components/base-formatted-dollars'
@@ -64,7 +65,7 @@ export default {
 				.sort((a, b) => a.releaseDate - b.releaseDate)
 				.map(movie => ({
 					...movie,
-					released: movie.releaseDate < now
+					released: movieIsReleased(movie)
 				}))
 		}
 	}

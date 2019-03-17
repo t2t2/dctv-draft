@@ -58,7 +58,7 @@
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						View Old Spreadsheet Experience
+						View Spreadsheet
 					</a>
 					<a
 						class="navbar-item"

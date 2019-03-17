@@ -73,12 +73,11 @@
 
 <script>
 import {state} from '@/store'
+import {ONE_WEEK, ONE_DAY, movieIsReleased} from '@/utils'
 
 import BaseFormattedDate from '@/components/base-formatted-date'
 import ChatrealmOverview from '@/components/chatrealm-overview.vue'
 import TeamRow from './team-row.vue'
-
-const ONE_WEEK = 7 * 24 * 60 * 60 * 1000
 
 export default {
 	components: {
@@ -91,12 +90,12 @@ export default {
 			const now = Date.now()
 
 			return Object.values(state.draft.movies)
-				.filter(movie => movie.releaseDate > now)
+				.filter(movie => !movieIsReleased(movie))
 				.sort((a, b) => a.releaseDate - b.releaseDate)
 				.slice(0, 5)
 				.map(movie => ({
 					...movie,
-					thisWeek: (movie.releaseDate - now) < ONE_WEEK
+					thisWeek: (movie.releaseDate - now) < (ONE_WEEK - ONE_DAY) // Don't highlight if viewed on friday and releases next week's friday
 				}))
 		},
 		rankedTeams() {
