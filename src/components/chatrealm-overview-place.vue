@@ -14,7 +14,7 @@
 				/>
 			</div>
 		</div>
-		<ul v-if="place.players.length <= maximumPeople">
+		<ul v-if="place.players.length > 1 && place.players.length <= maximumPeople">
 			<li
 				v-for="(player, i) in place.players"
 				:key="i"
