@@ -20,6 +20,25 @@
 							</select>
 						</div>
 					</div>
+					<div class="column is-one-third">
+						<label class="label">Sort By</label>
+						<div class="select is-fullwidth">
+							<select v-model="sortBy">
+								<option :value="undefined">Release ASC</option>
+								<option value="-releaseDate">Release DESC</option>
+								<option value="name">Name ASC</option>
+								<option value="-name">Name DESC</option>
+								<option value="owner">Owner ASC</option>
+								<option value="-owner">Owner DESC</option>
+								<option value="price">Purchase Price ASC</option>
+								<option value="-price">Purchase Price DESC</option>
+								<option value="gross">Gross ASC</option>
+								<option value="-gross">Gross DESC</option>
+								<option value="grossPerPrice">Gross per price ASC</option>
+								<option value="-grossPerPrice">Gross per price DESC</option>
+							</select>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -69,6 +88,8 @@
 </template>
 
 <script>
+import orderBy from 'lodash/orderBy'
+
 import {state} from '@/store'
 import MovieRow from './movie-row'
 
@@ -82,7 +103,7 @@ export default {
 		},
 		orderedMovies() {
 			const {movies} = state.draft
-			return Object.keys(movies)
+			const filtered = Object.keys(movies)
 				.map(key => {
 					const movie = movies[key]
 					return {
@@ -96,7 +117,15 @@ export default {
 					}
 					return movie.owner === this.ownerFilter
 				})
-				.sort((a, b) => a.releaseDate - b.releaseDate)
+
+			// Reorder
+			let field = this.sortBy || 'releaseDate'
+			let dir = 'asc'
+			if (field[0] === '-') {
+				field = field.substring(1)
+				dir = 'desc'
+			}
+			return orderBy(filtered, field, dir)
 		},
 		ownerFilter: {
 			get() {
@@ -107,6 +136,19 @@ export default {
 					path: this.$route.fullPath,
 					query: {
 						owner
+					}
+				})
+			}
+		},
+		sortBy: {
+			get() {
+				return this.$route.query.sort
+			},
+			set(sort) {
+				this.$router.push({
+					path: this.$route.fullPath,
+					query: {
+						sort
 					}
 				})
 			}
