@@ -1,7 +1,7 @@
 <template>
 	<div class="message">
 		<div class="message-header is-block">
-			<div class="columns is-vcentered">
+			<a href="https://twitter.com/vincent404/status/1151930446898446341" target="_blank" style="text-decoration: none" class="columns is-vcentered">
 				<div class="column">
 					<h1 class="is-size-2 is-size-3-desktop is-size-2-widescreen">
 						#7 CosmicRadioTV
@@ -10,7 +10,7 @@
 				<div class="column has-text-left has-text-right-tablet">
 					<span class="is-size-4 is-size-3-tablet">4,300,000 EEK</span>
 				</div>
-			</div>
+			</a>
 		</div>
 		<div class="message-body">
 			<div>
