@@ -9,9 +9,6 @@
 						:key="team.name"
 						:team="team"
 					/>
-
-					<!-- roberto special -->
-					<RobertoSpecial />
 				</div>
 				<div class="column is-one-third-desktop">
 					<ChatrealmOverview
@@ -80,14 +77,12 @@ import {ONE_WEEK, ONE_DAY, movieIsReleased} from '@/utils'
 
 import BaseFormattedDate from '@/components/base-formatted-date'
 import ChatrealmOverview from '@/components/chatrealm-overview.vue'
-import RobertoSpecial from '@/components/roberto-special.vue'
 import TeamRow from './team-row.vue'
 
 export default {
 	components: {
 		BaseFormattedDate,
 		ChatrealmOverview,
-		RobertoSpecial,
 		TeamRow
 	},
 	computed: {
