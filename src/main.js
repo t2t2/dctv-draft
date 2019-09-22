@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import 'bulmaswatch/pulse/bulmaswatch.min.css'
+import './assets/style.scss'
 import App from './app.vue'
 import router from './router'
 

@@ -39,7 +39,7 @@ export default {
 				case 'league':
 					return "Think you're smarter than the hosts, chatrealm? Well of course you are, here's your chance to use ₪100 to put together the best slate at prices decided by the draft."
 				case 'reverse':
-					return "Try to get last place while spending ₪100. Any leftover ₪ will be multiplied by Average ₪ / $ and added to the total earnings."
+					return "Try to get last place while spending ₪100. Any leftover ₪ will be multiplied by Average $ / ₪ and added to the total earnings."
 				case 'alternative':
 					return "Slates people were too afraid to pick"
 				default:

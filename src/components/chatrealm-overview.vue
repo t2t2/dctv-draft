@@ -10,7 +10,7 @@
 			:maximum-people="places"
 		/>
 		<router-link
-			:to="{name: 'chatrealm.league', params: {type}}"
+			:to="routeTo('chatrealm.league', {type})"
 			class="button is-primary is-outlined is-fullwidth"
 		>
 			View full standings &raquo;
@@ -22,8 +22,10 @@
 import {state} from '@/store'
 
 import ChatrealmOverviewPlace from './chatrealm-overview-place.vue'
+import relativeLinksMixin from '@/mixins/relative-links'
 
 export default {
+	mixins: [relativeLinksMixin],
 	components: {
 		ChatrealmOverviewPlace
 	},

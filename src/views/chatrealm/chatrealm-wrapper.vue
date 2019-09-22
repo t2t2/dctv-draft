@@ -4,19 +4,19 @@
 			<div class="tabs is-fullwidth">
 				<ul>
 					<router-link
-						:to="{name: 'chatrealm.league', params: {type: 'league'}}"
+						:to="routeTo('chatrealm.league', {type: 'league'})"
 						tag="li"
 					>
 						<a>Chatrealm League</a>
 					</router-link>
 					<router-link
-						:to="{name: 'chatrealm.league', params: {type: 'reverse'}}"
+						:to="routeTo('chatrealm.league', {type: 'reverse'})"
 						tag="li"
 					>
 						<a>Last With 100</a>
 					</router-link>
 					<router-link
-						:to="{name: 'chatrealm.league', params: {type: 'alternative'}}"
+						:to="routeTo('chatrealm.league', {type: 'alternative'})"
 						tag="li"
 					>
 						<a>Alternative picks</a>
@@ -29,6 +29,9 @@
 </template>
 
 <script>
+import relativeLinksMixin from '@/mixins/relative-links'
+
 export default {
+	mixins: [relativeLinksMixin]
 }
 </script>

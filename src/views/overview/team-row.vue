@@ -5,13 +5,13 @@
 	>
 		<div class="message-header is-block">
 			<div class="columns is-vcentered">
-				<div class="column">
+				<div class="column is-7">
 					<h1
 						class="is-size-2 is-size-3-desktop is-size-2-widescreen"
 						
 					>#{{ team.place }} {{ team.name }}</h1>
 				</div>
-				<div class="column has-text-left has-text-right-tablet">
+				<div class="column is-5 has-text-left has-text-right-tablet">
 					<BaseFormattedDollars
 						:value="team.earnings"
 						class="is-size-4 is-size-3-tablet"

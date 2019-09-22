@@ -1,0 +1,22 @@
+{
+	"current": "2019-winter",
+	"data": [
+		{"key": "2019-winter", "name": "2019 Winter Movie Draft", "schema": 2, "gsheetId": "2PACX-1vTs31b-aodH_YYHC_1IcpTSRWR6sZMmUED04pnn0y_eEmpRR6HKJmDZeCxbv73pZbRKPwxqJwAp4EZB"},
+		{"key": "2019-summer", "name": "2019 Summer Movie Draft", "schema": 1, "gsheetId": "2PACX-1vR8FQUnaz-ZiaT8bNRUBFC-haYeLckg3LTxOh1-VpSBKxrpjk-WiB1F0WepgCicqSqONwo2zmsoA7Z6"},
+		{"key": "2018-winter", "name": "2018 Winter Movie Draft", "schema": 0, "gsheetId": "2PACX-1vRkNEIgmq2a70G1s8VtVyTGeuzF5NLNWZixZN6IA8ovPWIaOJecKPNWktVlBZFVWRL3X1wvfA-cDsAa"},
+		{"key": "2018-summer", "name": "2018 Summer Movie Draft", "schema": 0, "gsheetId": "2PACX-1vT3-J4faoCdMX0_GapIoKaP-8amxmEX-p0qS2ACFArN4bOHv4EaJmCLg__B18oUtoOsqdUPLTsuM18_"},
+		{"key": "2017-winter", "name": "2017 Winter Movie Draft", "schema": 0, "gsheetId": "2PACX-1vTvK-e1sjD38hJG0WpmiRGXFqiI5ftFu8NG9xNmZjR57NCeuWEPNmwDZ_p78vXAhnGwj9YNjmMQO73I"},
+		{"key": "2017-summer", "name": "2017 Summer Movie Draft", "schema": 0, "gsheetId": "1d1ZrsMWCoH7sI_BlDtv7VdFWtxPnCiiTpB_A7cVbl2Q"},
+		{"key": "2016-winter", "name": "2016 Winter Movie Draft", "schema": 0, "gsheetId": "151ukwhs0nCL0t0_mOoON5G1MouTdw9xKQt_z78tBhTU"},
+		{"key": "2016-summer", "name": "2016 Summer Movie Draft", "schema": 0, "gsheetId": "1DUlhrhywjGCEOgOqDVrcr0oitbKLJmc67UpAzjxe9DA"},
+		{"key": "2015-winter", "name": "2015 Winter Movie Draft", "schema": 0, "gsheetId": "1pwTuD2LW2TiZm2YkwctmyC4rAFl8UeS_eEeWI6O5_qI"},
+		{"key": "2015-summer", "name": "2015 Summer Movie Draft", "schema": 0, "gsheetId": "0AuuOrQtH_qFZdHd0a0ZIVG01VXRrODg2ZXR2VG1Ba0E"},
+		{"key": "2014-winter", "name": "2014 Winter Movie Draft", "schema": 0, "gsheetId": "0AuuOrQtH_qFZdC12OFJGNWdTWHFxWjEtS2lDNGJaUFE"},
+		{"key": "2014-summer", "name": "2014 Summer Movie Draft", "schema": 0, "gsheetId": "0AuuOrQtH_qFZdFRSSFZDMjUyRkwxX2hpM2lfNlVxOFE"},
+		{"key": "2013-winter", "name": "2013 Winter Movie Draft", "schema": 0, "gsheetId": "0AuuOrQtH_qFZdDJGSk1TRmdDTDNkQ0FqRVZyMWxSakE"},
+		{"key": "2013-summer", "name": "2013 Summer Movie Draft", "schema": 0, "gsheetId": "0AuuOrQtH_qFZdDdwMXo2ZzlUVmgyRk5aMEZhTVc2Ymc"},
+		{"key": "2012-winter", "name": "2012 Winter Movie Draft", "schema": 0, "gsheetId": "1C5oz7Y_wLgyH-IUC50O3LXY1UpPxK5oQfKeX0593RhE"},
+		{"key": "2012-summer", "name": "2012 Summer Movie Draft", "schema": 0, "gsheetId": "1oG2CYjcJJga3jGu88NboG_qVGnVYBVxKccSI6UCO6C4"},
+		{"key": "2011-winter", "name": "2011 Winter Movie Draft", "schema": 0, "gsheetId": "1sPqpTifjOCfAsySQWDDebL2NmliYCpgX9sR6qWDQgh4"}
+	]
+}

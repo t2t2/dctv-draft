@@ -6,8 +6,10 @@
 		<div class="hero-body">
 			<div class="container">
 				<h1 class="title has-text-centered">Error fetching earnings</h1>
-				<pre>{{ error }}</pre>
-				<p><a :href="spreadsheetUrl">You can try opening the spreadsheet by clicking on this link</a></p>
+				<pre class="block">{{ error }}</pre>
+				<p class="has-text-centered">
+					<a class="has-text-light has-text-weight-bold" :href="spreadsheetUrl">You can try opening the spreadsheet by clicking on this link</a>
+				</p>
 			</div>
 		</div>
 	</section>
