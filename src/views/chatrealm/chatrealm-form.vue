@@ -1,7 +1,7 @@
 <template>
 	<section class="section">
 		<div v-if="formEndpoint" class="container">
-			<form :action="formEndpoint" method="POST" target="form-target" class="block">
+			<form :action="formEndpoint" method="POST" target="form-target" class="block" @submit="submitted">
 				<h1 class="title is-1">Chatrealm League Form</h1>
 				<div class="content">
 					<p>
@@ -138,7 +138,7 @@
 									<div v-if="picksCost <= 100" class="message is-info">
 										<div class="message-body">
 											₪ {{ 100 - picksCost }} money left
-											<p v-if="form.league === 'last100' && picksCost < 100">
+											<p v-if="form.league === 'Last with 100 League' && picksCost < 100">
 												Penalty: {{ 100 - picksCost }} * Average $ / ₪
 											</p>
 										</div>
@@ -156,14 +156,15 @@
 				<div class="field">
 					<div class="control">
 						<button
-							:disabled="picksCost > 100 || !form.league"
+							:disabled="picksCost > 100 || !form.league || disableSubmit"
 							class="button is-primary"
 							type="submit"
 						>Submit</button>
 					</div>
+					<p class="help">Submission happens via google forms, the result of which is shown below.</p>
 				</div>
 			</form>
-			<iframe name="form-target" src="about:blank" frameborder="0" style="width: 100%; height: 550px;"></iframe>
+			<iframe ref="formIframe" name="form-target" src="about:blank" frameborder="0" style="width: 100%; height: 550px;" @load="iframeLoaded"></iframe>
 		</div>
 		<div v-else class="container">
 			<div class="notification is-danger">
@@ -187,7 +188,8 @@ export default {
 				email: '',
 				league: '',
 				picks: []
-			}
+			},
+			disableSubmit: false
 		}
 	},
 	computed: {
@@ -206,6 +208,17 @@ export default {
 		},
 		picksCost({pickedMovies}) {
 			return pickedMovies.reduce((sum, movie) => sum + movie.price, 0)
+		}
+	},
+	methods: {
+		submitted() {
+			this.disableSubmit = true
+			this.$refs.formIframe.scrollIntoView({behavior: 'smooth'})
+		},
+		iframeLoaded() {
+			setTimeout(() => {
+				this.disableSubmit = false
+			}, 500)
 		}
 	}
 }
