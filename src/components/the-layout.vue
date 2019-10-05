@@ -13,13 +13,6 @@
 				<p class="has-text-weight-bold">Join The Chatrealm League</p>
 				<p>Chatrealm league form closes the day after first movie release (usually ~0:00 saturday PT)</p>
 			</RouterLink>
-			<RouterLink
-				v-if="routePrefix === 'current'"
-				:to="{name: 'archive.overview', params: {leagueKey: '2019-summer'}}"
-				class="is-block notification is-info"
-			>
-				<p class="has-text-weight-bold">Click here for 2019 Summer Movie League standings</p>
-			</RouterLink>
 			<RouterView />
 		</div>
 		<footer class="footer">
