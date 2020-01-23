@@ -4,7 +4,7 @@
 			:spreadsheet="spreadsheet"
 			:spreadsheet-url="spreadsheetUrl"
 		/>
-		<div class="content-wrapper">
+		<div>
 			<RouterLink
 				v-if="draft.status.chatrealmForm"
 				:to="routeTo('form')"

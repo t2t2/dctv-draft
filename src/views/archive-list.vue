@@ -1,6 +1,6 @@
 <template>
 	<div class="wrapper">
-		<div class="content-wrapper">
+		<div>
 			<div class="section">
 				<div class="container">
 					<h1 class="title is-1">Choose League:</h1>

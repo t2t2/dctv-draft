@@ -10,8 +10,4 @@
 		min-height: 100vh;
 		flex-direction: column;
 	}
-	.content-wrapper {
-		flex-grow: 1;
-		overflow: hidden;
-	}
 </style>
