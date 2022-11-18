@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.12.1",
-    "@vue/cli-service": "^3.12.1",
+    "@vue/cli-service": "^5.0.8",
     "bulma": "^0.7.5",
     "sass": "^1.25.0",
     "sass-loader": "^7.3.1",
